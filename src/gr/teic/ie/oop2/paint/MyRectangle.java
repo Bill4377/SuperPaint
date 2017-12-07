@@ -1,24 +1,34 @@
 package gr.teic.ie.oop2.paint;
 
+import gr.teic.ie.oop2.paint.logger.DatabaseLogger;
 import gr.teic.ie.oop2.paint.logger.FileTextLogger;
+import gr.teic.ie.oop2.paint.logger.LoggerFactory;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
-public class MyRectangle extends MyBoundedShape {
+public class MyRectangle extends MyBoundedShape implements Observer{
+
+    //private static int idRect = 0;
 
     public MyRectangle() {
         super();
-
+        super.setText("line_" +KeyGenerator.ProduceKey());
+        
         //Logging
-        new FileTextLogger().writeLog("Rectangle '" + getText() + "' created.");
+        //new FileTextLogger().writeLog("Rectangle '" + getText() + "' created.");
+        //new DatabaseLogger().writeLog("Rectangle '" + getText() + "' created.");
+        LoggerFactory.createLogger().writeLog("Rectangle '" + getText() + "' created.");
     }
 
     public MyRectangle(int x1, int y1, int x2, int y2, Color color, boolean fill) {
         super(x1, y1, x2, y2, color, fill);
-
+        super.setText("line_" +KeyGenerator.ProduceKey());
+        
         //Logging
-        new FileTextLogger().writeLog("Rectangle '" + getText() + "' created.");
+        //new FileTextLogger().writeLog("Rectangle '" + getText() + "' created.");
+        //new DatabaseLogger().writeLog("Rectangle '" + getText() + "' created.");
+        LoggerFactory.createLogger().writeLog("Rectangle '" + getText() + "' created.");
     }
 
     /**
@@ -42,6 +52,10 @@ public class MyRectangle extends MyBoundedShape {
             g.setColor(new Color(255 - getColor().getRed(), 255 - getColor().getGreen(), 255 - getColor().getBlue()));
         }
         g.drawString(getText(), x, y);
+    }
+    @Override
+    public void update() {
+        
     }
 
 }

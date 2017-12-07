@@ -1,6 +1,8 @@
 package gr.teic.ie.oop2.paint;
 
+import gr.teic.ie.oop2.paint.logger.DatabaseLogger;
 import gr.teic.ie.oop2.paint.logger.FileTextLogger;
+import gr.teic.ie.oop2.paint.logger.LoggerFactory;
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
@@ -106,7 +108,9 @@ public class DrawPanel extends JPanel {
             clearedShapes.addFront(myShapes.removeFront());
             repaint();
             //Logging
-            new FileTextLogger().writeLog("Clear last shape.");
+            //new FileTextLogger().writeLog("Clear last shape.");
+            //new DatabaseLogger().writeLog("Clear last shape.");
+            LoggerFactory.createLogger().writeLog("Clear last shape.");
         }
     }
 
@@ -118,7 +122,9 @@ public class DrawPanel extends JPanel {
             myShapes.addFront(clearedShapes.removeFront());
             repaint();
             //Logging
-            new FileTextLogger().writeLog("Redo last shape.");
+            //new FileTextLogger().writeLog("Redo last shape.");
+            //new DatabaseLogger().writeLog("Redo last shape.");
+            LoggerFactory.createLogger().writeLog("Redo last shape..");
         }
     }
 
@@ -130,7 +136,9 @@ public class DrawPanel extends JPanel {
         clearedShapes.makeEmpty();
         repaint();
         //Logging
-        new FileTextLogger().writeLog("Clear drawing.");
+        //new FileTextLogger().writeLog("Clear drawing.");
+        //new DatabaseLogger().writeLog("Clear drawing.");
+        LoggerFactory.createLogger().writeLog("Clear drawing.");
     }
 
     /**

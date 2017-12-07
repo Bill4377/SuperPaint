@@ -1,31 +1,45 @@
 package gr.teic.ie.oop2.paint;
 
+import gr.teic.ie.oop2.paint.logger.DatabaseLogger;
 import gr.teic.ie.oop2.paint.logger.FileTextLogger;
+import gr.teic.ie.oop2.paint.logger.LoggerFactory;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 /**
- * This class inherits from MyBoundedShape and is responsible for drawing a oval.
+ * This class inherits from MyBoundedShape and is responsible for drawing a
+ * oval.
  */
-public class MyOval extends MyBoundedShape {
+public class MyOval extends MyBoundedShape implements Observer{
+
+    //private static int idOval = 0;
 
     public MyOval() {
         super();
         
+        super.setText("line_" + KeyGenerator.ProduceKey());
+        
         //Logging
-        new FileTextLogger().writeLog("Oval '" + getText() + "' created.");
+        //new FileTextLogger().writeLog("Oval '" + getText() + "' created.");
+        //new DatabaseLogger().writeLog("Oval '" + getText() + "' created.");
+        LoggerFactory.createLogger().writeLog("Oval '" + getText() + "' created.");
     }
 
     public MyOval(int x1, int y1, int x2, int y2, Color color, boolean fill) {
         super(x1, y1, x2, y2, color, fill);
+        super.setText("line_" + KeyGenerator.ProduceKey());
         
         //Logging
-        new FileTextLogger().writeLog("Oval '" + getText() + "' created.");
+        //new FileTextLogger().writeLog("Oval '" + getText() + "' created.");
+        //new DatabaseLogger().writeLog("Oval '" + getText() + "' created.");
+        LoggerFactory.createLogger().writeLog("Oval '" + getText() + "' created.");
     }
 
     /**
      * Overrides the draw method in MyShape.
+     *
+     * @param g Graphics
      */
     @Override
     public void draw(Graphics g) {
@@ -45,6 +59,11 @@ public class MyOval extends MyBoundedShape {
             g.setColor(new Color(255 - getColor().getRed(), 255 - getColor().getGreen(), 255 - getColor().getBlue()));
         }
         g.drawString(getText(), x, y);
+    }
+    
+    @Override
+    public void update() {
+        
     }
 
 } // end class MyOval

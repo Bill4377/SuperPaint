@@ -122,6 +122,7 @@ public class DrawFrame extends JFrame {
     private class ButtonHandler implements ActionListener {
 
         // handles button events
+        @Override
         public void actionPerformed(ActionEvent event) {
             if (event.getActionCommand().equals("Undo")) {
                 panel.clearLastShape();

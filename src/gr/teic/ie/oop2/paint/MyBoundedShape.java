@@ -1,6 +1,8 @@
 package gr.teic.ie.oop2.paint;
 
+import gr.teic.ie.oop2.paint.logger.DatabaseLogger;
 import gr.teic.ie.oop2.paint.logger.FileTextLogger;
+import gr.teic.ie.oop2.paint.logger.LoggerFactory;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -78,7 +80,9 @@ abstract class MyBoundedShape implements MyShape {
     public void setText(String text) {
         this.text = text;
         //Logging
-        new FileTextLogger().writeLog("Shape text changed.");
+        //new FileTextLogger().writeLog("Shape text changed.");
+        //new DatabaseLogger().writeLog("Shape text changed.");
+        LoggerFactory.createLogger().writeLog("Shape text changed.");
     }
 
     /**
